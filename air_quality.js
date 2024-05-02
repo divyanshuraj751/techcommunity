@@ -2,10 +2,6 @@ const checkButton = document.getElementById('check-button');
 const aqiInput = document.getElementById('aqi-input');
 const result = document.getElementById('result');
 
-const wasmModule = await WebAssembly.compile(fetch('air_quality.wasm').then(r => r.arrayBuffer()));
-const wasmInstance = await WebAssembly.instantiate(wasmModule, {});
-const { factorial } = wasmInstance.exports;
-
 checkButton.addEventListener('click', () => {
   const aqi = parseInt(aqiInput.value);
   if (aqi >= 0 && aqi < 51) {
@@ -22,3 +18,4 @@ checkButton.addEventListener('click', () => {
     result.textContent = "Hazardous";
   }
 });
+
